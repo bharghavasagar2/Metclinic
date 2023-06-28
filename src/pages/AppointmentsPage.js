@@ -6,7 +6,8 @@ const AppointmentsPage = () => {
   const dispatch = useDispatch();
 
   const handleButtonClick = (i) => {
-    console.log(dispatch(fetchPatientByIdAsync(i)))
+    console.log(dispatch(fetchPatientByIdAsync(i)));
+    console.log(i)
     dispatch(fetchPatientByIdAsync(i));
   };
 
