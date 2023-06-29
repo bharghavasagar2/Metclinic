@@ -1,14 +1,24 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchPatientByIdAsync, fetchPatientsAsync } from '../redux/reducers/patientsSlice.js';
+import { deleteRecordById, getRecordById, fetchAllRecords, updateRecordById } from '../redux/reducers/patientsSlice.js';
 
 const AppointmentsPage = () => {
   const dispatch = useDispatch();
 
   const handleButtonClick = (i) => {
-    console.log(dispatch(fetchPatientByIdAsync(i)));
+    dispatch(deleteRecordById(i))
+    dispatch(getRecordById(i))
+    dispatch(fetchAllRecords());
+
+    let data = {
+      "userId": 1,
+      "id": 1,
+      "title": "Prabhas",
+      "body": "Not Good"
+    }
+    dispatch(updateRecordById({ id: i, data }));
     console.log(i)
-    dispatch(fetchPatientByIdAsync(i));
+    //dispatch(deleteById(i));
   };
 
   return (

@@ -1,30 +1,39 @@
 // patientsSlice.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { deleteById, getAllData, updateById } from '../commonSlice/commonSlice';
-//import { fetchPatientsAsync } from '../actions/patientsActions';
 
-const fetchPatientsAsync = getAllData('patients/fetchPatients', '/posts');
-const fetchPatientByIdAsync = getAllData('patients/fetchPatientById', '/posts');
-const deletePatientById = deleteById('patients/fetchPatientById', '/posts');
-const updatePatientById = updateById('patients/fetchPatientById', '/posts');
-
-
+const fetchAllRecords = getAllData('patients/fetchAllRecords', '/posts');
+const getRecordById = getAllData('patients/getRecordById', '/posts');
+const deleteRecordById = deleteById('patients/deleteRecordById', '/posts');
+const updateRecordById = updateById('patients/updateRecordById', '/posts');
 
 
 const patientsSlice = createSlice({
   name: 'patients',
-  initialState: [],
+  initialState: {
+    allPatients: [],
+    getAppPatientsById: null,
+    deleteRecordById: null,
+    updateRecordById: null,
+  },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchPatientsAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
-      return action.payload;
-    }).addCase(fetchPatientByIdAsync.fulfilled, (state, action) => {
-      // Handle the data specific to the get by ID operation
-      return action.payload;
-    });
+    builder
+      .addCase(fetchAllRecords.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.allPatients = action.payload;
+      })
+      .addCase(getRecordById.fulfilled, (state, action) => {
+        state.getAppPatientsById = action.payload;
+      })
+      .addCase(deleteRecordById.fulfilled, (state, action) => {
+        state.deleteRecordById = action.payload;
+      })
+      .addCase(updateRecordById.fulfilled, (state, action) => {
+        state.updateRecordById = action.payload;
+      });
   },
 });
 
-export { fetchPatientsAsync, fetchPatientByIdAsync };
+export { fetchAllRecords, getRecordById, deleteRecordById, updateRecordById };
 export default patientsSlice.reducer;

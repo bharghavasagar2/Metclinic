@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../api/api.js';
 
-// Works for both getbyId and get all data
+// Works for both getRecordById and get all data
 export const getAllData = (name, url) => {
   return createAsyncThunk(name, async (id, thunkAPI) => {
     console.log(id)
