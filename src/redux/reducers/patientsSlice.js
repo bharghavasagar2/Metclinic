@@ -1,10 +1,12 @@
 // patientsSlice.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllData } from '../commonSlice/commonSlice';
+import { deleteById, getAllData, updateById } from '../commonSlice/commonSlice';
 //import { fetchPatientsAsync } from '../actions/patientsActions';
 
 const fetchPatientsAsync = getAllData('patients/fetchPatients', '/posts');
 const fetchPatientByIdAsync = getAllData('patients/fetchPatientById', '/posts');
+const deletePatientById = deleteById('patients/fetchPatientById', '/posts');
+const updatePatientById = updateById('patients/fetchPatientById', '/posts');
 
 
 
